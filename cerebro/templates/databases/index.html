@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="header-title">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-heading mb-3">
+                    <h2>Обновление статистики</h2>
+                    <div class="subtitle">Ниже приведена информация касательно истории авторизации</div>
+                </div>
+                <table id="table-databases" class="display">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Краткое описание</th>
+                        <th>Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in databases %}
+                    <tr>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.about | truncatechars:70 }}</td>
+                        <td><a href="{% url 'database' index=item.index  %}" class="btn">Подробнее</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    $('#table-databases').DataTable({
+        order: [],
+        pageLength: 15,
+        bLengthChange: false,
+        searching: false,
+        language: {
+            "url": "/static/js/datatables_lang.json"
+        }
+    });
+</script>
+{% endblock scripts %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="header-title">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+    <div class="versions">
+        {% for version in versions %}
+        <div class="row">
+            <div class="col-7">
+                <div class="version">
+                    {% if version.update %}
+                    <div class="card">
+                        <div class="status updates">Что нового</div>
+                        <div>{{ version.update | safe }}</div>
+                    </div>
+                    {% endif %}
+                    {% if version.fix %}
+                    <div class="card">
+                        <div class="status fix">Исправлено</div>
+                        <div>{{ version.fix | safe }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="version-info">
+                    <div class="date">{{ version.date_update }}</div>
+                    <div class="title">{{ version.title }}</div>
+                    <div class="code">{{ version.version }}</div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

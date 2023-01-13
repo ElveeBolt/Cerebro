@@ -1,0 +1,35 @@
+{% load static %}
+
+<footer class="mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="footer-brand">
+                    <img src="{% static 'images/logo.png' %}" alt="">
+                    <div class="text">Cerebro - система глобального поиска и идентификации людей, в частности мутантов
+                        по вашему запросу.
+                    </div>
+                    <div class="copyright">Copyright © 2023. Design makes sense</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="footer-title">Меню</div>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'databases' %}">Источники данных</a></li>
+                    <li><a href="{% url 'statistic' %}">Статистика</a></li>
+                    <li><a href="{% url 'help' %}">Помощь</a></li>
+                    <li><a href="{% url 'about' %}">О проекте</a></li>
+                    <li><a href="{% url 'versions' %}">История изменений</a></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <div class="footer-title">Профиль</div>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'user' %}">Мой профиль</a></li>
+                    <li><a href="{% url 'search_history' %}">История поиска</a></li>
+                    <li><a href="{% url 'change_password' %}">Сменить пароль</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
