@@ -306,16 +306,16 @@
     </div>
 </div>
         <div class="col-3">
+            {% if database %}
             <div class="card">
-                {% for item in database %}
-                    <div class="card-heading mb-3">
-                        <h2>{{ item.title }}</h2>
-                        <div class="subtitle">Информация об источнике данных</div>
-                    </div>
-                    <div class="mb-3">{{ item.about | truncatechars:140 }}</div>
-                <a href="{% url 'database' index=item.index  %}" class="btn">Подробнее</a>
-                {% endfor %}
+                <div class="card-heading mb-3">
+                    <h2>{{ database.title }}</h2>
+                    <div class="subtitle">Информация об источнике данных</div>
+                </div>
+                <div class="mb-3">{{ database.about | truncatechars:140 }}</div>
+                <a href="{% url 'database' index=database.index  %}" class="btn">Подробнее</a>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

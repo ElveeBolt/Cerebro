@@ -74,13 +74,16 @@ def results(request):
 @login_required(redirect_field_name=None)
 def result(request, index, id):
     documents = api.get_document_by_id(index=index, id_=id)
-    database = Database.objects.filter(index=index).values()
+    try:
+        database = Database.objects.filter(index=index).get()
+    except Database.DoesNotExist:
+        database = None
 
     context = {
         'title': 'Результат',
         'subtitle': 'Детальная информация касательно обьекта',
         'documents': documents,
-        'database': database,
+        'database': database
     }
     return render(request, 'search/result.html', context=context)
 
