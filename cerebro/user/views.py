@@ -13,10 +13,12 @@ from api import api
 @login_required(redirect_field_name=None)
 def index(request):
     history_count = History.objects.filter(user=request.user).count()
+    history_login_count = Login.objects.filter(user=request.user).count()
     context = {
         'title': ' Мой профиль',
         'subtitle': 'Детальная информация о пользователе',
-        'history_count': history_count
+        'history_count': history_count,
+        'history_login_count': history_login_count
     }
 
     return render(request, 'user/index.html', context=context)
