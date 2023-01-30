@@ -923,3 +923,9 @@ table.dataTable.no-footer {
     font-size: 18px;
     font-weight: 500;
 }
+
+.comment-block{
+    margin-top: 15px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 15px;
+}
