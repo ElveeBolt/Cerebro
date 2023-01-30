@@ -929,3 +929,29 @@ table.dataTable.no-footer {
     border-top: 1px solid var(--color-border);
     padding-top: 15px;
 }
+
+
+.pagination .page-link {
+    border-radius: 10px;
+    margin: 0 4px;
+    border: none;
+    width: 34px;
+    height: 34px;
+    padding: 6px 10px;
+    font-size: 14px;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+}
+
+.page-item:first-child .page-link,
+.page-item:last-child .page-link{
+    border-radius: 10px;
+}
+
+.pagination .active>.page-link,
+.pagination .page-link.active,
+.pagination .page-link:hover{
+    color: #fff;
+    background: var(--color-main-blue);
+}
