@@ -7,6 +7,9 @@ from django.core.exceptions import ValidationError
 from .models import History, Login
 from statistic.models import Statistics
 from api import api
+from django.conf import settings
+from .services.Configurator import Configurator
+
 
 
 # Create your views here.
@@ -102,3 +105,22 @@ def admin_statistics(request):
     }
 
     return render(request, 'user/admin_statistics.html', context=context)
+
+
+@login_required(redirect_field_name=None)
+def admin_configurator(request):
+    context = {
+        'title': 'Конфигуратор источников',
+        'subtitle': 'Создание конфигурационных файлов для источника данных',
+        'mappings': settings.MAPPINGS
+    }
+
+    if request.method == 'POST':
+        config = request.POST.get("database")
+        mappings = request.POST.getlist('mappings')
+        configurator = Configurator(mappings=mappings, config=config)
+        download = configurator.generate_zip()
+
+        context['download'] = download
+
+    return render(request, 'user/admin_configurator.html', context=context)

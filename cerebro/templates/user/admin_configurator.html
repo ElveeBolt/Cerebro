@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="header-title">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-7">
+            {% if download %}
+            <div class="card">
+                <div class="card-heading mb-3">
+                    <h2>Сгенерированные данные</h2>
+                    <div class="subtitle">Ниже приведена информация касательно истории авторизации</div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <span class="svg-icon infograph">
+                            <svg width="100%" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M19 15C20.7 15 22 13.7 22 12C22 10.3 20.7 9 19 9C18.9 9 18.9 9 18.8 9C18.9 8.7 19 8.3 19 8C19 6.3 17.7 5 16 5C15.4 5 14.8 5.2 14.3 5.5C13.4 4 11.8 3 10 3C7.2 3 5 5.2 5 8C5 8.3 5 8.7 5.1 9H5C3.3 9 2 10.3 2 12C2 13.7 3.3 15 5 15H19Z" fill="currentColor"/>
+                                <path d="M13 17.4V12C13 11.4 12.6 11 12 11C11.4 11 11 11.4 11 12V17.4H13Z" fill="currentColor"/>
+                                <path opacity="0.3" d="M8 17.4H16L12.7 20.7C12.3 21.1 11.7 21.1 11.3 20.7L8 17.4Z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="col-10">
+                        <p>Введенные вами настройки и разметка были успешно сконфигурированны и доступны для скачивания</p>
+                        <a href="{{ download }}" target="_blank" class="btn btn-primary">Скачать конфигурацию</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-heading mb-3">
+                    <h2>Описание конфигуратора</h2>
+                    <div class="subtitle">Принцип работы и описание конфигуратора</div>
+                </div>
+                <p>
+                    Маппинг (сопоставление) — это процесс определения схемы или структуры документов. Он описывает
+                    свойства полей в документе. Свойства поля включают тип данных (например, string, integer и т.д.) и метаданные.
+                </p>
+                Название источника - полное название источника данных. Например: Пользователи сайта GeekBrains.
+            </div>
+            <div class="card">
+                <div class="card-heading mb-3">
+                    <h2>Форма конфигурации</h2>
+                    <div class="subtitle">Для генерации конфигурационных файлов, заполните форму ниже</div>
+                </div>
+                <form action="{% url 'admin_configurator' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="database" class="form-label">Полное название источника данных:</label>
+                        <input type="text" class="form-control" name="database" id="database" placeholder="Введите название..." required="required">
+                    </div>
+                    <hr>
+                    <label class="form-label">Поля разметки (маппинг):</label>
+                    <div class="row">
+                        {% for mapping in mappings %}
+                        <div class="col-6">
+                            <div class="form-check form-check-label mb-3">
+                                {% if mapping.checked == 1 %}
+                                <input class="form-check-input" type="checkbox" value="{{ mapping.field }}" id="{{ mapping.field }}" name="mappings" checked="checked">
+                                {% else %}
+                                <input class="form-check-input" type="checkbox" value="{{ mapping.field }}" id="{{ mapping.field }}" name="mappings">
+                                {% endif %}
+                                <label class="form-check-label" for="{{ mapping.field }}">{{ mapping.title}}<span>{{ mapping.field }}</span></label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Выполнить генерацию</button>
+                </form>
+            </div>
+        </div>
+        {% include 'user/menu.html' %}
+    </div>
+</div>
+{% endblock content %}

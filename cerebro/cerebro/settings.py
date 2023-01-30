@@ -133,6 +133,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+
+# Media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -185,3 +190,150 @@ LOGGING = {
         },
     },
 }
+
+# Configurator settings
+PATH_CONFIGURATOR_CONFIG = 'config.json'
+PATH_CONFIGURATOR_MAPPINGS = 'mappings.json'
+MAPPINGS_PATH = 'static/js/mappings.json'
+MAPPINGS = [
+    {
+        'field': 'name',
+        'title': 'Имя',
+        'checked': 0
+    },
+    {
+        'field': 'sex',
+        'title': 'Пол',
+        'checked': 0
+    },
+    {
+        'field': 'birth_date',
+        'title': 'Дата рождения',
+        'checked': 0
+    },
+    {
+        'field': 'birth_place',
+        'title': 'Место рождения',
+        'checked': 0
+    },
+    {
+        'field': 'country',
+        'title': 'Страна',
+        'checked': 0
+    },
+    {
+        'field': 'address',
+        'title': 'Адрес',
+        'checked': 0
+    },
+    {
+        'field': 'relationship',
+        'title': 'Статус отношений',
+        'checked': 0
+    },
+    {
+        'field': 'childrens',
+        'title': 'Дети',
+        'checked': 0
+    },
+    {
+        'field': 'phones',
+        'title': 'Телефон(-ы)',
+        'checked': 0
+    },
+    {
+        'field': 'emails',
+        'title': 'E-mails',
+        'checked': 0
+    },
+    {
+        'field': 'socials',
+        'title': 'Социальные сети',
+        'checked': 0
+    },
+    {
+        'field': 'educations',
+        'title': 'Образование',
+        'checked': 0
+    },
+    {
+        'field': 'works',
+        'title': 'Работа',
+        'checked': 0
+    },
+    {
+        'field': 'documents',
+        'title': 'Документы',
+        'checked': 0
+    },
+    {
+        'field': 'cars_status',
+        'title': 'Наличие авто',
+        'checked': 0
+    },
+    {
+        'field': 'cars',
+        'title': 'Авто',
+        'checked': 0
+    },
+    {
+        'field': 'banks',
+        'title': 'Платежные системы и банки',
+        'checked': 0
+    },
+    {
+        'field': 'ownerships',
+        'title': 'Собственность',
+        'checked': 0
+    },
+    {
+        'field': 'links',
+        'title': 'Ссылки',
+        'checked': 0
+    },
+    {
+        'field': 'accounts',
+        'title': 'Аккаунты',
+        'checked': 0
+    },
+    {
+        'field': 'ip',
+        'title': 'IP',
+        'checked': 0
+    },
+    {
+        'field': 'coordinates',
+        'title': 'Координаты',
+        'checked': 0
+    },
+    {
+        'field': 'comment',
+        'title': 'Комментарий',
+        'checked': 0
+    },
+    {
+        'field': 'database',
+        'title': 'База данных',
+        'checked': 1
+    },
+    {
+        'field': 'status',
+        'title': 'Статус',
+        'checked': 1
+    },
+    {
+        'field': 'category',
+        'title': 'Категория',
+        'checked': 1
+    },
+    {
+        'field': 'tags',
+        'title': 'Теги',
+        'checked': 0
+    },
+    {
+        'field': 'date',
+        'title': 'Дата',
+        'checked': 1
+    }
+]
