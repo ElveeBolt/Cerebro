@@ -12,7 +12,14 @@
         <div class="sidebar-box-title">Профиль</div>
          <div class="mini-profile">
              <div class="avatar">{{ user.username|slice:":2" }}</div>
-             <div class="title">{{ user.profile.name }}</div>
+             <div class="title">
+                 {{ user.profile.name }}
+                 {% if user.is_superuser %}
+                    <span>Администратор</span>
+                 {% else %}
+                    <span>Пользователь</span>
+                 {% endif %}
+             </div>
              {{ user.profile.division }}
          </div>
          <div class="mini-profile-buttons d-flex justify-content-between">

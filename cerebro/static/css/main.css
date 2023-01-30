@@ -436,6 +436,20 @@ footer ul li a{
 #sidebar .mini-profile .title{
     font-weight: 500;
     font-size: 16px;
+    position: relative;
+    padding-right: 115px;
+}
+
+#sidebar .mini-profile .title span{
+    border-radius: 20px;
+    font-size: 11px;
+    padding: 5px 10px;
+    position: absolute;
+    line-height: 1;
+    top: 0;
+    right: 0;
+    background: var(--body-bg);
+    color: var(--color-muted);
 }
 
 #sidebar .mini-profile .avatar {
