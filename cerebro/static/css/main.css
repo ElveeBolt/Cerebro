@@ -12,6 +12,7 @@
     --color-border-grey: #e2e8f0;
     --color-danger: #f1416c;
     --color-border-sidebar: #c7cfdc;
+    --color-success: #20c997;
 }
 
 /* raleway-300 - latin_cyrillic */
@@ -388,19 +389,38 @@ footer ul li a{
     background: none;
 }
 
+#sidebar .sidebar-statistic .d-flex {
+    margin-top: 10px;
+    border-top: 1px dashed var(--color-border-sidebar);
+    padding-top: 10px;
+}
+
 #sidebar .sidebar-statistic .count{
     color: #f1724a;
     font-size: 16px;
     font-weight: 500;
 }
 
+#sidebar .sidebar-statistic .status{
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+}
+
+#sidebar .sidebar-statistic .status.success{
+    background: var(--color-success);
+}
+
+#sidebar .sidebar-statistic .status.danger{
+    background: var(--color-danger);
+}
+
 #sidebar .sidebar-statistic .sidebar-box-description{
     display: block;
     color: var(--color-muted);
     font-size: 13px;
-    margin-bottom: 15px;
-    border-bottom: 1px dashed var(--color-border-sidebar);
-    padding-bottom: 10px;
 }
 
 #sidebar .sidebar-box .sidebar-box-title {

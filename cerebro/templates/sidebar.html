@@ -95,6 +95,13 @@
             <span class="me-auto">Записей:</span>
             <div class="count">{{ sidebar_statistic.documents }}</div>
         </div>
-
+        <div class="d-flex">
+            <span class="me-auto">Соединение с сервером:</span>
+            {% if ping_elasticsearch %}
+            <div class="status success">Установлено</div>
+            {% else %}
+            <div class="status danger">Не установлено</div>
+            {% endif %}
+        </div>
     </div>
 </div>

@@ -6,6 +6,15 @@ client = Elasticsearch(settings.ELASTIC_SERVER,
                        basic_auth=(settings.ELASTIC_USER['username'], settings.ELASTIC_USER['password']))
 
 
+def ping_elasticsearch() -> bool:
+    """
+    Ping elasticsearch server
+
+    :return: bool of ping
+    """
+    return client.ping(request_timeout=0.5)
+
+
 def get_total_documents() -> int:
     """
     Get documents count of indexes
@@ -53,7 +62,7 @@ def get_indexes_size() -> float:
     indexes = client.indices.stats()
 
     size = indexes['_all']['total']['store']['size_in_bytes']
-    size = size / 1024**3
+    size = size / 1024 ** 3
 
     return round(size, 2)
 
@@ -79,7 +88,7 @@ def get_documents(query: str) -> dict:
             "require_field_match": False
         }
     }
-    documents = client.search(index="*", body=body)
+    documents = client.search(index="*", body=body, request_timeout=30)
 
     return parse_search(documents)
 
@@ -135,31 +144,3 @@ def parse_search(documents: dict) -> dict | None:
     }
 
     return data
-
-
-def get_suggest(query: str) -> dict:
-    """
-    Get suggest by query
-
-    :param query: str of query
-    :return: dict of results
-    """
-    body = {
-      "query" : {
-        "match": {
-          "message": "tring out Elasticsearch"
-        }
-      },
-      "suggest" : {
-        "my-suggestion" : {
-          "text" : "tring out Elasticsearch",
-          "term" : {
-            "field" : "message"
-          }
-        }
-      }
-    }
-    documents = client.search(index="*", body=body)
-    print(documents)
-
-    return

@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'statistic.context_processors.get_statistic',
+                'search.context_processors.ping_elasticsearch',
             ],
         },
     },
