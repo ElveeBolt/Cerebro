@@ -9,6 +9,7 @@ from statistic.models import Statistics
 from api import api
 from django.conf import settings
 from .services.Configurator import Configurator
+from .forms import SignUpForm
 
 
 
@@ -105,6 +106,33 @@ def admin_statistics(request):
     }
 
     return render(request, 'user/admin_statistics.html', context=context)
+
+
+@login_required(redirect_field_name=None)
+def admin_user_registration(request):
+    context = {
+        'title': 'Регистрация пользователя',
+        'subtitle': 'Создание нового пользователя',
+        'form_success': False
+    }
+
+    form = SignUpForm(request.POST)
+
+    if form.is_valid():
+        user = form.save()
+        user.refresh_from_db()
+        user.profile.name = form.cleaned_data.get('name')
+        user.profile.division = form.cleaned_data.get('division')
+        user.profile.comment = form.cleaned_data.get('comment')
+        user.save()
+        context['form_success'] = True
+        form = SignUpForm()
+    else:
+        form = SignUpForm()
+
+    context['form'] = form
+
+    return render(request, 'user/admin_user_registration.html', context=context)
 
 
 @login_required(redirect_field_name=None)

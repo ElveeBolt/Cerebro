@@ -97,9 +97,9 @@ ul {
 }
 
  .form-control{
-font-size: 13px;
-    height: 36px;
-     border: 1px solid var(--color-border-grey);
+    font-size: 13px;
+    min-height: 36px;
+    border: 1px solid var(--color-border-grey);
 
  }
 
@@ -1009,4 +1009,31 @@ table.dataTable.no-footer {
 .pagination .page-link:hover{
     color: #fff;
     background: var(--color-main-blue);
+}
+
+.card.card-message {
+    padding-left: 110px;
+    min-height: 110px;
+}
+
+.card-message .svg-icon.infograph {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    background: var(--body-bg);
+    padding: 10px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+
+.card-message h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.card-message .text {
+    color: var(--color-muted);
+    font-size: 13px;
+        font-weight: 500;
 }
