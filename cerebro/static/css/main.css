@@ -199,6 +199,10 @@ hr{
     font-weight: 500;
 }
 
+.text-muted {
+    color: var(--color-muted);
+}
+
 footer{
     padding: 30px 0;
     background: var(--footer-bg);
