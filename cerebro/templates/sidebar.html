@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <div id="sidebar">
   <div class="sidebar-title">
       Меню
@@ -101,7 +103,7 @@
         <div class="d-flex">
             <span class="me-auto">Записей:</span>
             {% if sidebar_statistic %}
-            <div class="count">{{ sidebar_statistic.documents }}</div>
+            <div class="count">{{ sidebar_statistic.documents|intcomma }}</div>
             {% else %}
             <div class="count">Данные отсутствуют</div>
             {% endif %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
 {% load static %}
 
 {% block title %}{{ title }}{% endblock title %}
@@ -24,7 +25,7 @@
                                 <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"/>
                             </svg>
                         </span>
-                        <div class="count">{{ statistic_latest.documents }}</div>
+                        <div class="count">{{ statistic_latest.documents|intcomma }}</div>
                         <div class="title">Всего записей</div>
                     </div>
                 </div>

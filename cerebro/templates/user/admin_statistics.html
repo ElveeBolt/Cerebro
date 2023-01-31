@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
@@ -41,7 +43,7 @@
                     {% for item in history %}
                         <tr>
                             <td data-sort="{{ item.date|date:'dmYHi' }}">{{ item.date }}</td>
-                            <td>{{ item.documents }}</td>
+                            <td>{{ item.documents|intcomma}}</td>
                             <td>{{ item.indexes }}</td>
                             <td>{{ item.size }}</td>
                             <td>{{ item.users }}</td>
