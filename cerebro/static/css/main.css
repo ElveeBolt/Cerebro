@@ -962,6 +962,7 @@ table.dataTable.no-footer {
     height: 50px;
     display: flex;
     background: var(--body-bg);
+    color: var(--color-muted);
     align-items: center;
     justify-content: center;
     border-radius: 10px;

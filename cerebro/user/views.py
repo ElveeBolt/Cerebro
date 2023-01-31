@@ -85,14 +85,15 @@ def login_history(request):
 
 @login_required(redirect_field_name=None)
 def admin_statistics(request):
-
     status_update = None
     if request.GET.get('update'):
         status_update = 'Данные успешно обновлены'
         statistics = Statistics(
             documents=api.get_total_documents(),
             indexes=api.get_total_indices(),
-            size=api.get_indexes_size()
+            size=api.get_indexes_size(),
+            users=User.objects.all().count(),
+            queries=History.objects.all().count()
         )
         statistics.save()
 
