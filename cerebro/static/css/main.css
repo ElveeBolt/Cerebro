@@ -244,7 +244,7 @@ footer ul li a{
 }
 
 .navbar-brand>img {
-    height: 20px;
+    height: 30px;
 }
 
 .navbar form{
@@ -657,13 +657,17 @@ body.show-sidebar #overlay{
     color: var(--color-muted);
 }
 
+#home-box img {
+    width: 220px;
+    height: auto;
+}
 
 #login-box{
     width: 350px;
 }
 
 #login-box .heading-box img {
-    width: 200px;
+    width: 100px;
 }
 
 #login-box .heading-box .title{
