@@ -150,8 +150,7 @@ server {
 }
 
 server {
-    listen 443;
-    ssl on;
+    listen 443 ssl;
     ssl_certificate /mnt/data/cert/cerebro-certificate.crt;
     ssl_certificate_key /mnt/data/cert/cerebro-certificate.key;
     server_name 192.168.20.125;
