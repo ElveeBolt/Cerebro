@@ -330,6 +330,7 @@ footer ul li a{
     padding: 20px;
     margin-left: -400px;
     transition: 0.3s all;
+    overflow-y: auto;
 }
 
 #sidebar .sidebar-title {
