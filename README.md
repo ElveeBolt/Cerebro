@@ -185,46 +185,69 @@ sudo nginx -t
 
 ## Create SSL / HTTPS Certificate
 
-Create dir when we saved certificates
+Create Certificate Authority
 ```bash
-sudo mkdir /mnt/data/cert
-sudo chown -R cerebro:cerebro /mnt/data/cert
+openssl req -x509 -sha256 -days 356 -nodes -newkey rsa:2048 -subj "/CN=10.0.0.2/C=US/L=San Fransisco" -keyout cerebro.key -out cerebro.crt 
 ```
 
-Create certificate files for the certification authority
+Create the Server Private Key
 ```bash
-openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout cerebro.key -out cerebro.pem -subj "/C=US/CN=Cerebro CA"
+openssl genrsa -out cerebro-certificate.key 2048
 ```
 
-Extract the public key from the generated file where the private key and the certificate itself are stored
+Create Certificate Signing Request Configuration
 ```bash
-openssl x509 -outform pem -in cerebro.pem -out cerebro.crt
+sudo nano csr.conf
 ```
 
-Create a <code>v3.ext</code> file with the content:
+```
+[ req ]
+default_bits = 2048
+prompt = no
+default_md = sha256
+req_extensions = req_ext
+distinguished_name = dn
+
+[ dn ]
+C = US
+ST = California
+L = San Fransisco
+O = Cerebro
+OU = Cerebro Dev
+CN = 192.168.10.02
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = cerebro
+IP.1 = 192.168.10.02
+```
+
+Generate Certificate Signing Request (CSR) Using Server Private Key
 ```bash
-sudo nano v3.ext
+openssl req -new -key cerebro-certificate.key -out cerebro-certificate.csr -config csr.conf
+```
+
+Create a external file
+```bash
+sudo nano cert.conf
 ```
 
 ```
 authorityKeyIdentifier=keyid,issuer
-basicConstraints=CA:TRUE
+basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
+
 [alt_names]
 DNS.1 = cerebro
-IP.1 = 192.168.20.125
-```
-Where 192.168.20.125 - your IP
-
-Create a certificate
-```bash
-openssl req -new -nodes -newkey rsa:2048 -keyout /mnt/data/cert/cerebro-certificate.key -out /mnt/data/cert/cerebro-certificate.csr -subj "/C=US/ST= New York/L= New York/O=Cerebro Org/CN=Cerebro/OU=Cyber Warrior"
+IP.1 = 10.0.0.2
 ```
 
-Sign the certificate
+Generate SSL certificate With self signed CA
 ```bash
-openssl x509 -req -sha256 -days 1024 -extfile v3.ext -CA cerebro.crt -CAkey cerebro.key -CAcreateserial -in /mnt/data/cert/cerebro-certificate.csr -out /mnt/data/cert/cerebro-certificate.crt
+openssl x509 -req -in cerebro-certificate.csr -CA cerebro.crt -CAkey cerebro.key -CAcreateserial -out cerebro-certificate.crt -days 365 -sha256 -extfile cert.conf
 ```
 
 
