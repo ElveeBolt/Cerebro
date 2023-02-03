@@ -580,6 +580,11 @@ body.show-sidebar #overlay{
     margin: 0 0 10px;
 }
 
+.card-search h3 em{
+    font-weight: bold;
+    font-style: normal;
+}
+
 .card-search .text{
     margin-bottom: 10px
 }
