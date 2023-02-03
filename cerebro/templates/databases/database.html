@@ -15,10 +15,10 @@
                     <h2>{{ database.title }}</h2>
                     <div class="subtitle">Ниже приведена информация касательно базы данных</div>
                 </div>
-                {{ database.about }}
+                {{ database.about|linebreaks }}
                 {% if database.comment %}
                 <div class="comment-block">
-                    {{ database.comment }}
+                    {{ database.comment|linebreaks }}
                 </div>
                 {% endif %}
             </div>
@@ -28,6 +28,15 @@
                     <div class="subtitle">Дополнительная информация об источнике</div>
                 </div>
                 <ul class="user-info-list list-unstyled mb-0">
+                    <li><span class="left">Актуальность данных:</span>
+                        <span class="right">
+                            {% if database.actuality %}
+                            {{ database.actuality }}
+                            {% else %}
+                            Не установлена
+                            {% endif %}
+                        </span>
+                    </li>
                     <li><span class="left">Количество записей:</span> <span class="right">{{ index_info.documents }}</span></li>
                     <li><span class="left">Объём источника:</span> <span class="right">{{ index_info.size }}</span></li>
                     <li><span class="left">Источник данных (индекс):</span> <span class="right">{{ index_info.index }}</span></li>

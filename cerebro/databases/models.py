@@ -5,6 +5,7 @@ from django.db import models
 class Database(models.Model):
     title = models.CharField(null=False, max_length=255, verbose_name='Название источника')
     index = models.CharField(null=False, max_length=255, verbose_name='Кодовое название')
+    actuality = models.IntegerField(null=True, blank=True, verbose_name='Актуальность данных')
     about = models.TextField(null=True, blank=True, verbose_name='Описание')
     comment = models.TextField(null=True, blank=True, verbose_name='Комментарий')
 
