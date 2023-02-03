@@ -3,5 +3,17 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-  404
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="error-box">
+          <span class="error">404</span>
+          <h1>Страница не найдена</h1>
+          <div class="text">Кажется что-то пошло не так! Страница, которую вы запрашиваете, не существует. 
+            Возможно она устарела, была удалена, или был введен неверный адрес в адресной строке</div>
+          <a href="{% url 'index' %}" class="btn btn-primary">Вернутся на главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

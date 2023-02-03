@@ -1047,3 +1047,19 @@ table.dataTable.no-footer {
     font-size: 13px;
         font-weight: 500;
 }
+
+
+.error-box .error {
+    font-size: 130px;
+    font-weight: bold;
+    color: var(--color-main-blue);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.error-box .text {
+    color: var(--color-submain);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
