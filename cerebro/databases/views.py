@@ -22,13 +22,11 @@ def database(request, index):
     database = Database.objects.filter(index=index).get()
     index_info = api.get_index_info(index=database.index)
 
-    print(index)
-
     context = {
         'title': 'Источник данных',
         'subtitle': 'Детальная информация об источнике данных',
         'database': database,
         'index_info': index_info[0]
     }
-    print(context)
+
     return render(request, 'databases/database.html', context=context)
