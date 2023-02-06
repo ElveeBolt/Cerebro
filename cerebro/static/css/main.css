@@ -961,6 +961,16 @@ table.dataTable.no-footer {
     color:#fff!important;
 }
 
+#table-databases .title{
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#table-databases .description{
+    color: var(--color-muted);
+}
+
 
 .card-statistic {
     background: #fff;
