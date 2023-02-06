@@ -3,5 +3,16 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-  404
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="error-box">
+        <span class="error">500</span>
+        <h1>Ошибка обращения к сервису</h1>
+        <div class="text">Мы уже устраняем неисправность, попробуйте обновить страницу через некоторое время. Приносим извинения за временные неудобства</div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Вернутся на главную</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
