@@ -172,6 +172,10 @@ DOCUMENTS_COUNT = 150
 RESULTS_PER_PAGE = 15
 
 
+# Search results
+DOCUMENTS_RESULTS = 500
+
+
 # Logging settings
 LOGGING = {
     'version': 1,

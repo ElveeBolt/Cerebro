@@ -61,11 +61,17 @@ def results(request):
     )
     search.save()
 
+    if total > settings.DOCUMENTS_RESULTS:
+        documents_results = True
+    else:
+        documents_results = False
+
     context = {
         'title': 'Результаты поиска',
         'page_obj': page_obj,
         'query': query,
-        'documents': documents
+        'documents': documents,
+        'documents_results': documents_results
     }
 
     return render(request, 'search/results.html', context=context)
