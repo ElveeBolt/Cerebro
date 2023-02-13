@@ -565,11 +565,15 @@ body.show-sidebar #overlay{
 }
 
 .card-search{
-    margin: 0 0 30px;
+    margin: 0 0 20px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 20px;
 }
 
 .card .card-search:last-child{
-    margin: 0
+    margin: 0;
+    border: none;
+    padding: 0;
 }
 
 .card-search h3{
