@@ -29,11 +29,11 @@ class Configurator:
 
     def create_mapping(self):
         jsons = self.read_json()
-        data = {'mappings': {}}
+        data = {'properties': {}}
         for item in self._mappings:
             key = jsons.get(item, None)
             if key:
-                data['mappings'][item] = key
+                data['properties'][item] = key
 
         return self.create_file(data)
 
