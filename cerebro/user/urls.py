@@ -12,5 +12,7 @@ urlpatterns = [
     path('logout', auth_views.LogoutView.as_view(template_name='user/logout.html'), name='logout'),
     path('admin-statistics', views.admin_statistics, name='admin_statistics'),
     path('admin-configurator', views.admin_configurator, name='admin_configurator'),
-    path('admin-user-registration', views.admin_user_registration, name='admin_user_registration')
+    path('admin-user-registration', views.admin_user_registration, name='admin_user_registration'),
+    path('admin-index', views.admin_index, name='admin_index'),
+    path('admin-index/<str:index>/mapping', views.admin_index_mapping, name='admin_index_mapping'),
 ]

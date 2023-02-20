@@ -58,6 +58,41 @@ def get_index_info(index: str) -> dict or None:
     return data[0]
 
 
+def get_indexes_info() -> list:
+    """
+    Get information about all elasticsearch indexes
+
+    :return: list of indexes
+    """
+    indexes = client.cat.indices(format='json')
+
+    data = []
+    for index in indexes:
+        data.append({
+            'index': index['index'],
+            'health': index['health'],
+            'documents': index['docs.count'],
+            'size': index['store.size'],
+            'status': index['status']
+        })
+
+    return sorted(data, key=lambda item: item['index'])
+
+
+def get_index_mapping(index: str) -> list or None:
+    """
+    Get information about mapping of elasticsearch index
+
+    :return: dict of mapping
+    """
+    try:
+        mapping = client.indices.get_mapping(index=index)
+    except exceptions.NotFoundError:
+        return
+
+    return mapping
+
+
 def get_indexes_size() -> float:
     """
     Get information about size of elasticsearch indexes

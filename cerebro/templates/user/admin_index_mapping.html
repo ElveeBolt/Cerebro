@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="header-title">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-heading mb-3">
+                <h2>Просмотр mapping</h2>
+                <div class="subtitle">Детальный просмотра характеристик полей текущего индекса</div>
+            </div>
+             <pre id="mapping"></pre>
+            </div>
+        </div>
+        {% include 'user/menu.html' %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    var data = {{ mapping | safe }}
+    document.getElementById("mapping").textContent = JSON.stringify(data, undefined, 2);
+</script>
+{% endblock scripts %}

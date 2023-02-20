@@ -12,7 +12,6 @@ from .services.Configurator import Configurator
 from .forms import SignUpForm
 
 
-
 # Create your views here.
 @login_required(redirect_field_name=None)
 def index(request):
@@ -80,7 +79,6 @@ def login_history(request):
     }
 
     return render(request, 'user/login_history.html', context=context)
-
 
 
 @login_required(redirect_field_name=None)
@@ -153,3 +151,23 @@ def admin_configurator(request):
         context['download'] = download
 
     return render(request, 'user/admin_configurator.html', context=context)
+
+
+@login_required(redirect_field_name=None)
+def admin_index(request):
+    context = {
+        'title': 'Состояние источников',
+        'subtitle': 'Просмотр данных об источниках в реальном времени',
+        'indexes': api.get_indexes_info()
+    }
+    return render(request, 'user/admin_index.html', context=context)
+
+
+@login_required(redirect_field_name=None)
+def admin_index_mapping(request, index):
+    context = {
+        'title': 'Разметка полей источника',
+        'subtitle': 'Детали разметки полей источника данных',
+        'mapping': api.get_index_mapping(index)
+    }
+    return render(request, 'user/admin_index_mapping.html', context=context)
