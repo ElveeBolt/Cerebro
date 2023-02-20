@@ -27,7 +27,7 @@ def database(request, index):
         'title': 'Источник данных',
         'subtitle': 'Детальная информация об источнике данных',
         'database': database,
-        'index_info': index_info[0],
+        'index_info': index_info,
         'posts': posts
     }
 

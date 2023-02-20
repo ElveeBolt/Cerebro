@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+from elasticsearch import exceptions
 from django.conf import settings
 
 client = Elasticsearch(settings.ELASTIC_SERVER,
@@ -35,13 +36,17 @@ def get_total_indices() -> int:
     return len(indexes)
 
 
-def get_index_info(index: str) -> list:
+def get_index_info(index: str) -> dict or None:
     """
     Get information about elasticsearch index
 
-    :return: int of count
+    :return: dict of index or None
     """
-    indexes = client.cat.indices(index=index, format='json', h=['index', 'docs.count', 'store.size'])
+    try:
+        indexes = client.cat.indices(index=index, format='json', h=['index', 'docs.count', 'store.size'])
+    except exceptions.NotFoundError:
+        return
+
     data = []
     for index in indexes:
         data.append({
@@ -50,7 +55,7 @@ def get_index_info(index: str) -> list:
             'size': index['store.size']
         })
 
-    return data
+    return data[0]
 
 
 def get_indexes_size() -> float:
