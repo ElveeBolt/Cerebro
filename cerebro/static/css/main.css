@@ -1020,6 +1020,67 @@ table.dataTable.no-footer {
     padding-top: 15px;
 }
 
+.post-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-links .post-link:last-child{
+    margin: 0;
+    padding-bottom: 0;
+    border: none;
+}
+
+.post-link .svg-icon {
+    color: var(--color-muted);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.post-link .title{
+    margin-right: 30px;
+}
+
+.post-link .btn{
+    white-space: nowrap;
+}
+
+.card-gallery .owl-nav {
+    position: absolute;
+    top: -75px;
+    right: 0;
+    display: flex;
+}
+
+.card-gallery .owl-carousel .owl-nav .owl-next,
+.card-gallery .owl-carousel .owl-nav .owl-prev{
+    width: 30px;
+    height: 30px;
+    background: var(--body-bg)!important;
+    display: block;
+    border-radius: 50%;
+}
+
+.card-gallery .owl-carousel .owl-nav .owl-next{
+    margin-left: 5px;
+}
+
+.card-gallery .owl-carousel .owl-nav .owl-next:hover,
+.card-gallery .owl-carousel .owl-nav .owl-prev:hover{
+    background: var(--color-main-blue)!important;
+    color: #fff;
+}
+
+.card-gallery .owl-dots {
+    display: none;
+}
 
 .pagination .page-link {
     border-radius: 10px;

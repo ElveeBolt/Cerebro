@@ -8,7 +8,6 @@ class Statistics(models.Model):
     size = models.FloatField(null=True, verbose_name='Размер данных')
     users = models.IntegerField(null=True, verbose_name='Пользователей')
     queries = models.IntegerField(null=True, verbose_name='Запросов')
-
     date = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 
     def __str__(self):
