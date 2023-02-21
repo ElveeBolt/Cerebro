@@ -1278,3 +1278,48 @@ section .section-title .subtitle {
 #about-promo{
     background-color: #dadce8;
 }
+
+
+.task-alert {
+    position: fixed;
+    bottom: 20px;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+    background: #fff;
+    padding: 20px 20px 20px 110px;
+    border-radius: 10px;
+}
+
+.task-alert .svg-icon {
+    color: var(--color-main-blue);
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 70px;
+    height: 70px;
+    background: var(--body-bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-alert .title {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+
+.task-alert .title .status {
+    background: var(--color-main-blue);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+}
