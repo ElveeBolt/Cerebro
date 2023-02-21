@@ -16,6 +16,84 @@ def ping_elasticsearch() -> bool:
     return client.ping(request_timeout=0.5)
 
 
+def check_indexation_tasks() -> bool:
+    """
+    Get all active tasks from elasticsearch server and check
+    indexation task.
+
+    :return: bool of indexation task
+    """
+    tasks = [
+        {
+          "action":"cluster:monitor/tasks/lists",
+          "task_id":"9mbzkxLNR5-7BTfdfdz2NQ:7189598",
+          "parent_task_id":"-",
+          "type":"transport",
+          "start_time":"1676959960166",
+          "timestamp":"06:12:40",
+          "running_time":"158micros",
+          "ip":"10.0.0.2",
+          "node":"node-1",
+          "description":""
+       },
+       {
+          "action":"cluster:monitor/tasks/lists[n]",
+          "task_id":"9mbzkxLNR5-7BTfdfdz2NQ:7189599",
+          "parent_task_id":"9mbzkxLNR5-7BTfdfdz2NQ:7189598",
+          "type":"direct",
+          "start_time":"1676959960166",
+          "timestamp":"06:12:40",
+          "running_time":"55.3micros",
+          "ip":"10.0.0.2",
+          "node":"node-1",
+          "description":""
+       },
+        {
+            "action": "indices:data/write/bulk",
+            "task_id": "9mbzkxLNR5-7BTfdfdz2NQ:7189594",
+            "parent_task_id": "-",
+            "type": "transport",
+            "start_time": "1676959960091",
+            "timestamp": "06:12:40",
+            "running_time": "75.4ms",
+            "ip": "10.0.0.2",
+            "node": "node-1",
+            "description": "requests[500], indices[index_0049]"
+        },
+        {
+            "action": "indices:data/write/bulk[s]",
+            "task_id": "9mbzkxLNR5-7BTfdfdz2NQ:7189595",
+            "parent_task_id": "9mbzkxLNR5-7BTfdfdz2NQ:7189594",
+            "type": "transport",
+            "start_time": "1676959960092",
+            "timestamp": "06:12:40",
+            "running_time": "74.5ms",
+            "ip": "10.0.0.2",
+            "node": "node-1",
+            "description": "requests[500], index[index_0049][0]"
+        },
+        {
+            "action": "indices:data/write/bulk[s][p]",
+            "task_id": "9mbzkxLNR5-7BTfdfdz2NQ:7189596",
+            "parent_task_id": "9mbzkxLNR5-7BTfdfdz2NQ:7189595",
+            "type": "direct",
+            "start_time": "1676959960092",
+            "timestamp": "06:12:40",
+            "running_time": "74.3ms",
+            "ip": "10.0.0.2",
+            "node": "node-1",
+            "description": "requests[500], index[index_0049][0]"
+        },
+    ]
+
+    # tasks = client.cat.tasks(format='json', detailed=True)
+    for task in tasks:
+        if 'indices:data/write/bulk' == task['action']:
+            return True
+
+    return False
+
+
 def get_total_documents() -> int:
     """
     Get documents count of indexes

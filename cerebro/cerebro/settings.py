@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--ik_0w-0p5wdx09d+h4qwr!$uwysdi-f8gvkwr@1zb@rqq)yy5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.0.3']
 
 
 # Application definition
@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'statistic.context_processors.get_statistic',
                 'search.context_processors.ping_elasticsearch',
+                'search.context_processors.tasks_elasticsearch',
             ],
         },
     },
