@@ -1157,3 +1157,124 @@ table.dataTable.no-footer {
     font-weight: 500;
     margin-bottom: 20px;
 }
+
+section{
+    padding: 80px 0;
+}
+
+section .section-title {
+    margin-bottom: 30px;
+}
+
+section .section-title .subtitle {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#about-home {
+    padding: 0;
+    background: #fff;
+    margin-top: -20px;
+}
+
+.about-home-box{
+    text-align: center;
+    background: url("../images/about-home.svg");
+    background-size: 100%;
+    background-position: center;
+    padding: 150px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.about-home-box img{
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+.card-testimonials {
+    padding-left: 100px;
+}
+
+.card-testimonials .svg-icon {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    background: var(--body-bg);
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--color-muted);
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    transition: 0.3s all;
+}
+
+.card-testimonials h3 {
+    font-size: 20px;
+}
+
+.technology-boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.technology-box {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 20px 20px 0;
+    background: #fff;
+    height: 120px;
+}
+
+.technology-box img{
+    width: 100%;
+}
+
+#about-scenario {
+    background: #fff;
+}
+
+.scenario-box {
+    background: var(--body-bg);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.scenario-box .svg-icon{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--color-muted);
+    transition: 0.3s all;
+    margin: 0 auto 15px;
+}
+
+.scenario-box .title {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.scenario-box .text {
+    margin: 5px 0;
+}
+
+.scenario-box .example {
+    color: var(--color-muted);
+}
+
+
+
+#about-promo{
+    background-color: #dadce8;
+}

@@ -1,27 +1,209 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<div class="container">
-    <div class="header-title">
-        <h1>{{ title }}</h1>
-        <div class="subtitle">{{ subtitle }}</div>
+<section id="about-home">
+    <div class="container">
+        <div class="about-home-box">
+            <img src="http://10.0.0.3:8000/static/images/logo.png" alt="">
+            <div class="text-muted">Система глобального поиска и идентификации людей,<br>в частности мутантов по вашему запросу</div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-7">
-            <div class="card">
-                <div class="card-heading mb-3">
-                    <h2>Поиск стал проще и быстрей</h2>
+</section>
+<section id="about-testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>Поиск стал проще и быстрей</h2>
+            <div class="subtitle text-muted">Cerebro объединяет большенство направлений поиска в одном месте и позволяет находить информацию за считанные секунды</div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card card-testimonials">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.5 20.7259C14.6 21.2259 14.2 21.826 13.7 21.926C13.2 22.026 12.6 22.0259 12.1 22.0259C9.5 22.0259 6.9 21.0259 5 19.1259C1.4 15.5259 1.09998 9.72592 4.29998 5.82592L5.70001 7.22595C3.30001 10.3259 3.59999 14.8259 6.39999 17.7259C8.19999 19.5259 10.8 20.426 13.4 19.926C13.9 19.826 14.4 20.2259 14.5 20.7259ZM18.4 16.8259L19.8 18.2259C22.9 14.3259 22.7 8.52593 19 4.92593C16.7 2.62593 13.5 1.62594 10.3 2.12594C9.79998 2.22594 9.4 2.72595 9.5 3.22595C9.6 3.72595 10.1 4.12594 10.6 4.02594C13.1 3.62594 15.7 4.42595 17.6 6.22595C20.5 9.22595 20.7 13.7259 18.4 16.8259Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M2 3.62592H7C7.6 3.62592 8 4.02592 8 4.62592V9.62589L2 3.62592ZM16 14.4259V19.4259C16 20.0259 16.4 20.4259 17 20.4259H22L16 14.4259Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <h3>Регулярные обновления</h3>
+                    <div class="text text-muted">Ежедневные улучшения и добавление новых источников данных.</div>
                 </div>
-                <p>Cerebro объединяет большенство направлений поиска в одном месте и позволяет находить информацию за
-                    считанные
-                    секунды. Cerebro использует собственные хранилища данных и обрабатывает их благодаря продуманным
-                    алгоритмам поиска</p>
-
+            </div>
+            <div class="col-6">
+                <div class="card card-testimonials">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <h3>Легкий поиск</h3>
+                    <div class="text text-muted">Для начала поиска достаточно номера телефона или имени человека</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card card-testimonials">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M12.3408 20.7578C12.3408 21.7578 13.6408 22.0578 14.1408 21.2578L19.5408 11.8578C19.9408 11.1578 19.4408 10.3578 18.6408 10.3578H12.3408V20.7578Z" fill="currentColor"></path>
+                            <path d="M12.3408 3.9578C12.3408 2.9578 11.0408 2.6578 10.5408 3.4578L5.14078 12.8578C4.74078 13.5578 5.24078 14.3578 6.04078 14.3578H12.3408V3.9578Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <h3>Скорость обработки</h3>
+                    <div class="text text-muted">Поиск данных не занимает большого количества времени</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card card-testimonials">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="currentColor"></path>
+                            <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <h3>Источники данных</h3>
+                    <div class="text text-muted">Полнотекстовый поиск среди большого количества баз</div>
+                </div>
             </div>
         </div>
     </div>
-
-</div>
+</section>
+<section id="about-scenario">
+    <div class="container">
+        <div class="section-title">
+            <h2>Сценарии использования</h2>
+            <div class="subtitle text-muted">Cerebro использует собственные хранилища данных и обрабатывает их благодаря продуманным алгоритмам поиска</div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 8H16C15.4 8 15 8.4 15 9V16H10V17C10 17.6 10.4 18 11 18H16C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18H21C21.6 18 22 17.6 22 17V13L20 8Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M20 18C20 19.1 19.1 20 18 20C16.9 20 16 19.1 16 18C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18ZM15 4C15 3.4 14.6 3 14 3H3C2.4 3 2 3.4 2 4V13C2 13.6 2.4 14 3 14H15V4ZM6 16C4.9 16 4 16.9 4 18C4 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <div class="title">По номеру автомобиля</div>
+                    <div class="text">Информация об автомобиле по гос номеру</div>
+                    <div class="example">Нап.: АО4852АА</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 7H2V11H22V7Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <div class="title">По номеру банковской карты</div>
+                    <div class="text">Получение информации о владельце карты</div>
+                    <div class="example">Нап.: 4444444444444444</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <div class="title">Номера телефона по ФИО</div>
+                    <div class="text">Номер телефона по ФИО человека</div>
+                    <div class="example">Нап.: Просура Валерий Николаевич</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M3 6C2.4 6 2 5.6 2 5V3C2 2.4 2.4 2 3 2H5C5.6 2 6 2.4 6 3C6 3.6 5.6 4 5 4H4V5C4 5.6 3.6 6 3 6ZM22 5V3C22 2.4 21.6 2 21 2H19C18.4 2 18 2.4 18 3C18 3.6 18.4 4 19 4H20V5C20 5.6 20.4 6 21 6C21.6 6 22 5.6 22 5ZM6 21C6 20.4 5.6 20 5 20H4V19C4 18.4 3.6 18 3 18C2.4 18 2 18.4 2 19V21C2 21.6 2.4 22 3 22H5C5.6 22 6 21.6 6 21ZM22 21V19C22 18.4 21.6 18 21 18C20.4 18 20 18.4 20 19V20H19C18.4 20 18 20.4 18 21C18 21.6 18.4 22 19 22H21C21.6 22 22 21.6 22 21Z" fill="currentColor"></path>
+                            <path d="M3 16C2.4 16 2 15.6 2 15V9C2 8.4 2.4 8 3 8C3.6 8 4 8.4 4 9V15C4 15.6 3.6 16 3 16ZM13 15V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V15C11 15.6 11.4 16 12 16C12.6 16 13 15.6 13 15ZM17 15V9C17 8.4 16.6 8 16 8C15.4 8 15 8.4 15 9V15C15 15.6 15.4 16 16 16C16.6 16 17 15.6 17 15ZM9 15V9C9 8.4 8.6 8 8 8H7C6.4 8 6 8.4 6 9V15C6 15.6 6.4 16 7 16H8C8.6 16 9 15.6 9 15ZM22 15V9C22 8.4 21.6 8 21 8H20C19.4 8 19 8.4 19 9V15C19 15.6 19.4 16 20 16H21C21.6 16 22 15.6 22 15Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <div class="title">Поиск автомобиля по VIN</div>
+                    <div class="text">Информация об автомобиле по VIN</div>
+                    <div class="example">Нап.: ХТА21150053965897</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 21C6 21.6 6.4 22 7 22H17C17.6 22 18 21.6 18 21V20H6V21Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M17 2H7C6.4 2 6 2.4 6 3V20H18V3C18 2.4 17.6 2 17 2Z" fill="currentColor"></path>
+                            <path d="M12 4C11.4 4 11 3.6 11 3V2H13V3C13 3.6 12.6 4 12 4Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <div class="title">По номеру телефона</div>
+                    <div class="text">Информации о человеке по номеру</div>
+                    <div class="example">Нап.: 79998887777</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="scenario-box">
+                    <span class="svg-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="currentColor"/>
+                            <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <div class="title">По email адресу</div>
+                    <div class="text">Информации о человеке по email</div>
+                    <div class="example">Нап.: sergio_ramos@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about-tech">
+    <div class="container">
+        <div class="section-title">
+            <h2>Работа обеспечена</h2>
+            <div class="subtitle text-muted">Cerebro использует возможности различных технологий и объеденяет их в полноценную систему поиска и идентификации мутантов</div>
+        </div>
+        <div class="technology-boxes">
+            <div class="technology-box">
+                <img src="{% static 'images/elastic_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/django_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/python_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/bootstrap_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/html5_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/css3_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/jquery_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/gunicorn_logo.png' %}" alt="">
+            </div>
+            <div class="technology-box">
+                <img src="{% static 'images/nginx_logo.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about-promo">
+    <div class="container">
+        <div class="section-title">
+            <h2>Готовы начать поиск?</h2>
+            <div class="subtitle">Довольно слов! Начинайте идентифицировать мутантов уже сейчас</div>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Начать поиск</a>
+    </div>
+</section>
 {% endblock content %}
