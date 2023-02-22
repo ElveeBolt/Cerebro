@@ -15,14 +15,14 @@
          <div class="mini-profile">
              <div class="avatar">{{ user.username|slice:":2" }}</div>
              <div class="title">
-                 {{ user.profile.name }}
+                 {{ user.name }}
                  {% if user.is_superuser %}
                     <span>Администратор</span>
                  {% else %}
                     <span>Пользователь</span>
                  {% endif %}
              </div>
-             {{ user.profile.division }}
+             {{ user.division }}
          </div>
          <div class="mini-profile-buttons d-flex justify-content-between">
           <a type="button" href="{% url 'user' %}" class="btn btn-primary">Мой профиль</a>

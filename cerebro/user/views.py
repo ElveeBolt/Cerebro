@@ -113,24 +113,20 @@ def admin_user_registration(request):
     context = {
         'title': 'Регистрация пользователя',
         'subtitle': 'Создание нового пользователя',
+        'form': SignUpForm(),
         'form_success': False
     }
 
     form = SignUpForm(request.POST)
-
-    if form.is_valid():
-        user = form.save()
-        user.refresh_from_db()
-        user.profile.name = form.cleaned_data.get('name')
-        user.profile.division = form.cleaned_data.get('division')
-        user.profile.comment = form.cleaned_data.get('comment')
-        user.save()
-        context['form_success'] = True
-        form = SignUpForm()
-    else:
-        form = SignUpForm()
-
-    context['form'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            context['form_success'] = True
+            context['form'] = SignUpForm()
+        else:
+            context['form'] = form
 
     return render(request, 'user/admin_user_registration.html', context=context)
 

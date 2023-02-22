@@ -1,13 +1,35 @@
 from django.contrib import admin
-from .models import Profile, Division, History, Login
+from django.contrib.auth.admin import UserAdmin
+from .models import User, Division, History, Login
 
 # Register your models here.
 admin.site.register(Division)
 
-@admin.register(Profile)
-class Profile(admin.ModelAdmin):
-    list_display = ('user', 'division')
-    list_filter = ('user', 'division')
+@admin.register(User)
+class User(UserAdmin):
+    model = User
+    list_display = ['username', 'name', 'division', 'is_staff', 'is_active']
+    list_filter = ['division', 'is_staff', 'is_active']
+
+    add_fieldsets = (
+        *UserAdmin.add_fieldsets,
+        (
+            'Основные данные',
+            {
+                'fields': ['name', 'division', 'comment']
+            }
+        )
+    )
+
+    fieldsets = (
+        *UserAdmin.fieldsets,
+        (
+            'Основные данные',
+            {
+                'fields': ['name', 'division', 'comment']
+            }
+        )
+    )
 
 @admin.register(History)
 class History(admin.ModelAdmin):
