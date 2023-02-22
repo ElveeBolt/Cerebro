@@ -9,24 +9,23 @@
     <div id="login-box" class="card">
         <div class="heading-box text-center mb-4">
             <img src="{% static 'images/logo_small.png' %}" alt="">
-            <div class="title">Авторизация</div>
-            <div class="subtitle">Для начала использования возможностей Cerebro выполните вход в систему</div>
+            <div class="title">{{ title }}</div>
+            <div class="subtitle">{{ subtitle }}</div>
         </div>
-
-        <form method="post" action="{% url 'login' %}">
+        <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="username" class="form-label">Логин:</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Введите логин..." required="required"
-                       autofocus="autofocus">
+                <label class="form-label" for="{{ form.username.auto_id }}">{{ form.username.label_tag }}</label>
+                {{ form.username }}
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Пароль:</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль..."
-                       required="required">
+                <label class="form-label" for="{{ form.password.auto_id }}">{{ form.password.label_tag }}</label>
+                {{ form.password }}
             </div>
-            {% if form.errors %}
-            <div class="mb-3 text-danger text-center">Вы пытаетесь войти под несуществующими данными</div>
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="text-danger text-center mb-3">{{ error }}</div>
+                {% endfor %}
             {% endif %}
             <div class="d-grid">
             <button type="submit" class="btn btn-primary">Войти в систему</button>

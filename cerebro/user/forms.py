@@ -66,3 +66,24 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'name', 'division', 'comment', 'password1', 'password2']
+
+
+class SignInForm(forms.Form):
+    username = forms.CharField(
+        required=True,
+        label='Логин:',
+        help_text='Last Name',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Введите логин...',
+            'class': 'form-control'
+        })
+    )
+    password = forms.CharField(
+        required=True,
+        label='Пароль:',
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Введите пароль...',
+            'class': 'form-control'
+        })
+    )

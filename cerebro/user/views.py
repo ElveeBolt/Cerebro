@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from .models import History, Login
@@ -9,7 +9,8 @@ from statistic.models import Statistics
 from api import api
 from django.conf import settings
 from .services.Configurator import Configurator
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
+
 
 
 # Create your views here.
@@ -171,3 +172,25 @@ def admin_index_mapping(request, index):
         'mapping': api.get_index_mapping(index)
     }
     return render(request, 'user/admin_index_mapping.html', context=context)
+
+
+def login(request):
+    context = {
+        'title': 'Авторизация',
+        'subtitle': 'Для начала использования возможностей Cerebro выполните вход в систему',
+        'form': SignInForm()
+    }
+
+    if request.method == 'POST':
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user is not None:
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                form.add_error(None, 'Вы пытаетесь войти под несуществующими данными')
+
+        context['form'] = form
+
+    return render(request, 'user/login.html', context=context)
