@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
 from .models import Division
 
@@ -86,4 +86,37 @@ class SignInForm(forms.Form):
             'placeholder': 'Введите пароль...',
             'class': 'form-control'
         })
+    )
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        required=True,
+        label='Текущий пароль:',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Введите текущий пароль...',
+                'class': 'form-control'
+            }
+        )
+    )
+    new_password1 = forms.CharField(
+        required=True,
+        label='Новый пароль:',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Введите пароль...',
+                'class': 'form-control'
+            }
+        )
+    )
+    new_password2 = forms.CharField(
+        required=True,
+        label='Повторите пароль:',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Повторите пароль...',
+                'class': 'form-control'
+            }
+        )
     )

@@ -10,7 +10,7 @@ from statistic.models import Statistics
 from api import api
 from django.conf import settings
 from .services.Configurator import Configurator
-from .forms import SignUpForm, SignInForm
+from .forms import SignUpForm, SignInForm, ChangePasswordForm
 
 
 # Create your views here.
@@ -33,25 +33,15 @@ def change_password(request):
     context = {
         'title': 'Смена пароля',
         'subtitle': 'Страница смены пароля',
-        'form': []
+        'form': ChangePasswordForm(request.user)
     }
     if request.method == 'POST':
-        user = User.objects.get(username=request.user)
-        old_password = request.POST.get("old_password")
-        new_password = request.POST.get("new_password")
-        new_password_repeat = request.POST.get("new_password_repeat")
-        if check_password(old_password, user.password):
-            if new_password != new_password_repeat:
-                context['form'].append('Введенные вами новые пароли не совпадают')
-            else:
-                try:
-                    validate_password(new_password, password_validators=None)
-                    user.set_password(new_password)
-                    user.save()
-                except ValidationError as e:
-                    context['form'] = e
+        form = ChangePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            context['form'] = ChangePasswordForm(request.user)
         else:
-            context['form'].append('Введенный вами текущий пароль неверный. Повторите попытку ещё раз')
+            context['form'] = form
 
     return render(request, 'user/change_password.html', context=context)
 
