@@ -7,12 +7,10 @@ from api import api
 # Create your views here.
 @login_required(redirect_field_name=None)
 def index(request):
-    databases = Database.objects.all()
-
     context = {
         'title': 'Источники данных',
         'subtitle': 'Список источников данных среди которых осуществляется поиск',
-        'databases': databases
+        'databases': Database.objects.all()
     }
     return render(request, 'databases/index.html', context=context)
 
