@@ -23,7 +23,11 @@ def check_indexation_tasks() -> bool:
 
     :return: bool of indexation task
     """
-    tasks = client.cat.tasks(format='json', detailed=True)
+    try:
+        tasks = client.cat.tasks(format='json', detailed=True)
+    except exceptions.ConnectionTimeout:
+        return False
+
     for task in tasks:
         if 'indices:data/write/bulk' == task['action']:
             return True
