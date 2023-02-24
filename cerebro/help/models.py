@@ -15,7 +15,7 @@ class HelpCategory(models.Model):
 class Help(models.Model):
     title = models.CharField(null=False, max_length=255, verbose_name='Название вопроса')
     text = models.TextField(null=True, blank=True, verbose_name='Ответ')
-    category = models.ForeignKey(HelpCategory, null=True, on_delete=models.SET_NULL, verbose_name='Категория')
+    category = models.ForeignKey(HelpCategory, null=True, related_name='helps', on_delete=models.SET_NULL, verbose_name='Категория')
 
     def __str__(self):
         return f"{self.title}"
