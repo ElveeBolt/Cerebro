@@ -27,19 +27,19 @@
                             </svg>
                         </span>
                         <div class="title">{{ post.title }}</div>
-                        <a href="{{ post.url }}" class="btn">Читать оригинал</a>
+                        <a href="{{ post.url }}" class="btn" target="_blank">Читать оригинал</a>
                     </div>
                 </div>
                 {% endif %}
             </div>
-            {% if images %}
+            {% if post.images.all %}
             <div class="card card-gallery">
                 <div class="card-heading mb-3">
                     <h2>Изображения</h2>
                     <div class="subtitle">Изображения которые связанны с источником данных</div>
                 </div>
                 <div id="post-images" class="owl-carousel">
-                {% for image in images %}
+                {% for image in post.images.all %}
                 <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="{{ post.title }}">
                     <img src="{{ image.image.url }}" alt="" />
                 </a>

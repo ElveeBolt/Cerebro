@@ -32,13 +32,10 @@ def database(request, index):
 
 @login_required(redirect_field_name=None)
 def post(request, index, post_id):
-    post = Post.objects.filter(id=post_id).get()
-    images = PostImage.objects.filter(post=post_id).all()
     context = {
         'title': 'Источник данных',
         'subtitle': 'Детальная информация об источнике данных',
-        'post': post,
-        'images': images
+        'post': Post.objects.filter(id=post_id).get(),
     }
 
     return render(request, 'databases/post.html', context=context)

@@ -34,7 +34,7 @@ class Post(models.Model):
 
 
 class PostImage(models.Model):
-    post = models.ForeignKey(Post, null=True, on_delete=models.SET_NULL, verbose_name='Пост')
+    post = models.ForeignKey(Post, null=True, related_name='images', on_delete=models.SET_NULL, verbose_name='Пост')
     image = models.ImageField(upload_to='posts', null=True, verbose_name='Изображение')
 
     def image_preview(self):
