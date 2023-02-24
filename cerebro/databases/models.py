@@ -19,7 +19,7 @@ class Database(models.Model):
 
 
 class Post(models.Model):
-    index = models.ForeignKey(Database, null=True, on_delete=models.SET_NULL, verbose_name='Индекс')
+    database = models.ForeignKey(Database, null=True, related_name='posts', on_delete=models.SET_NULL, verbose_name='Индекс')
     title = models.CharField(null=False, max_length=255, verbose_name='Название поста')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     url = models.CharField(null=True, blank=True, max_length=255, verbose_name='Источник')

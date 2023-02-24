@@ -41,14 +41,14 @@
                 </div>
                 {% endif %}
             </div>
-            {% if posts %}
+            {% if database.posts.all %}
             <div class="card">
                 <div class="card-heading mb-3">
                     <h2>Посты</h2>
                     <div class="subtitle">Список постов связанных с источником данных</div>
                 </div>
                 <div class="post-links">
-                {% for post in posts %}
+                {% for post in database.posts.all %}
                     <div class="post-link">
                         <span class="svg-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

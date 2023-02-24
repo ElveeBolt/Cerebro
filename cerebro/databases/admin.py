@@ -11,7 +11,7 @@ class Database(admin.ModelAdmin):
 
 @admin.register(Post)
 class Post(admin.ModelAdmin):
-    list_display = ('title', 'index')
+    list_display = ('title', 'database')
 
 
 @admin.register(PostImage)
