@@ -143,7 +143,7 @@ def get_documents(query: str) -> dict:
             "require_field_match": False
         }
     }
-    documents = client.search(index="*", body=body, request_timeout=30)
+    documents = client.search(index="*", body=body, request_timeout=500)
 
     return parse_search(documents)
 
