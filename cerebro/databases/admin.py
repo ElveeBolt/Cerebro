@@ -5,8 +5,8 @@ from .models import Database, Post, PostImage
 # Register your models here.
 @admin.register(Database)
 class Database(admin.ModelAdmin):
-    list_display = ('title', 'index', 'actuality')
-    list_filter = ('actuality',)
+    list_display = ('title', 'index', 'actuality', 'category', 'country')
+    list_filter = ('actuality', 'category', 'country')
 
 
 @admin.register(Post)
