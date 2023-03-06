@@ -1,41 +1,40 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Database, Post, PostImage
 from api import api
+from django.views.generic import ListView, DetailView
 
 
 # Create your views here.
-@login_required(redirect_field_name=None)
-def index(request):
-    context = {
+class DatabaseListView(LoginRequiredMixin, ListView):
+    model = Database
+    template_name = 'databases/index.html'
+    context_object_name = 'databases'
+    extra_context = {
         'title': 'Источники данных',
-        'subtitle': 'Список источников данных среди которых осуществляется поиск',
-        'databases': Database.objects.all()
+        'subtitle': 'Список источников данных среди которых осуществляется поиск'
     }
-    return render(request, 'databases/index.html', context=context)
 
 
-@login_required(redirect_field_name=None)
-def database(request, index):
-    database = Database.objects.filter(index=index).get()
-    index_info = api.get_index_info(index=database.index)
+class DatabaseView(LoginRequiredMixin, DetailView):
+    model = Database
+    template_name = 'databases/database.html'
+    extra_context = {
+        'title': 'Источник данных',
+        'subtitle': 'Детальная информация об источнике данных'
+    }
 
-    context = {
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['index_info'] = api.get_index_info(index=self.object.index)
+        return context
+
+
+class PostView(LoginRequiredMixin, DetailView):
+    model = Post
+    template_name = 'databases/post.html'
+    extra_context = {
         'title': 'Источник данных',
         'subtitle': 'Детальная информация об источнике данных',
-        'database': database,
-        'index_info': index_info,
     }
-
-    return render(request, 'databases/database.html', context=context)
-
-
-@login_required(redirect_field_name=None)
-def post(request, index, post_id):
-    context = {
-        'title': 'Источник данных',
-        'subtitle': 'Детальная информация об источнике данных',
-        'post': Post.objects.filter(id=post_id).get(),
-    }
-
-    return render(request, 'databases/post.html', context=context)

@@ -57,7 +57,7 @@
                             </svg>
                         </span>
                         <div class="title">{{ post.title }}</div>
-                        <a href="{% url 'post' index=database.index post_id=post.id  %}" class="btn">Читать пост</a>
+                        <a href="{% url 'post' pk=post.id  %}" class="btn">Читать пост</a>
                     </div>
                 {% endfor %}
                 </div>

@@ -38,7 +38,7 @@
                             {{ item.actuality }}
                             {% endif %}
                         </td>
-                        <td><a href="{% url 'database' index=item.index  %}" class="btn">Подробнее</a></td>
+                        <td><a href="{% url 'database' pk=item.id  %}" class="btn">Подробнее</a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

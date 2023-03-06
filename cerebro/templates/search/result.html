@@ -432,7 +432,7 @@
                     <div class="subtitle">Информация об источнике данных</div>
                 </div>
                 <div class="mb-3">{{ database.about | truncatechars:140 }}</div>
-                <a href="{% url 'database' index=database.index  %}" class="btn">Подробнее</a>
+                <a href="{% url 'database' pk=database.id  %}" class="btn">Подробнее</a>
             </div>
             {% endif %}
         </div>
