@@ -1,9 +1,7 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Database, Post, PostImage
-from api import api
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Database, Post
+from api import api
 
 
 # Create your views here.
