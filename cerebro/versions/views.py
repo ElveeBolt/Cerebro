@@ -1,15 +1,14 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Version
 
 
 # Create your views here.
-@login_required(redirect_field_name=None)
-def index(request):
-    versions = Version.objects.all().order_by('-date')
-    context = {
+class VersionListView(LoginRequiredMixin, ListView):
+    model = Version
+    template_name = 'versions/index.html'
+    context_object_name = 'versions'
+    extra_context = {
         'title': 'История версий',
         'subtitle': 'Информация касательно выпусков и обновлений Cerebro',
-                    'versions': versions
     }
-    return render(request, 'versions/index.html', context=context)
