@@ -1,15 +1,14 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import HelpCategory
-from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(redirect_field_name=None)
-def index(request):
-    context = {
+class HelpListView(LoginRequiredMixin, ListView):
+    model = HelpCategory
+    template_name = 'help/index.html'
+    context_object_name = 'categories'
+    extra_context = {
         'title': 'Помощь',
-        'subtitle': 'Страница ответов на часто задаваемые вопросы',
-        'categories': HelpCategory.objects.all()
+        'subtitle': 'Страница ответов на часто задаваемые вопросы'
     }
-
-    return render(request, 'help/index.html', context=context)
