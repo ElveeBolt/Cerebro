@@ -184,22 +184,28 @@ def parse_search(documents: dict) -> dict | None:
 
     items = []
     for document in documents['hits']['hits']:
-        highlight = document.get('highlight')
-        if highlight is not None:
-            highlight = [', '.join(value) for value in highlight.values()]
-            highlight = ', '.join(highlight)
+        highlights = document.get('highlight')
+
+        if highlights is not None:
+            highlights_unique = []
+            for v in highlights.values():
+                for k in v:
+                    if k not in highlights_unique:
+                        highlights_unique.append(k)
+
+            highlights = ', '.join(highlights_unique)
 
         items.append({
             'index': document['_index'],
             'id': document['_id'],
             'score': document['_score'],
             'source': document['_source'],
-            'highlight': highlight
+            'highlight': highlights
         })
 
     data = {
         'total': total,
-        'data': items,
+        'data': items
     }
 
     return data
