@@ -7,8 +7,8 @@ from statistic.models import Statistics
 from api import api
 from django.conf import settings
 from .services.Configurator import Configurator
-from .forms import SignUpForm, SignInForm, ChangePasswordForm
-from django.views.generic import TemplateView
+from .forms import SignUpForm, SignInForm, ChangePasswordForm, StatisticForm
+from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -71,30 +71,29 @@ def login_history(request):
     return render(request, 'user/login_history.html', context=context)
 
 
-@login_required(redirect_field_name=None)
-def admin_statistics(request):
-    status_update = None
-    if request.GET.get('update'):
-        status_update = 'Данные успешно обновлены'
-        statistics = Statistics(
-            documents=api.get_total_documents(),
-            indexes=api.get_total_indices(),
-            size=api.get_indexes_size(),
-            users=User.objects.all().count(),
-            queries=History.objects.all().count()
-        )
-        statistics.save()
-
-    history = Statistics.objects.values().order_by('-date')
-
-    context = {
+class AdminStatisticsView(LoginRequiredMixin, CreateView):
+    model = Statistics
+    form_class = StatisticForm
+    template_name = 'user/admin/statistics.html'
+    success_url = '#'
+    extra_context = {
         'title': 'История посещений',
-        'subtitle': 'Информация касательно активности профиля',
-        'history': history,
-        'status_update': status_update
+        'subtitle': 'Информация касательно активности профиля'
     }
 
-    return render(request, 'user/admin_statistics.html', context=context)
+    def get_initial(self):
+        return {
+            'documents': api.get_total_documents(),
+            'indexes': api.get_total_indices(),
+            'size': api.get_indexes_size(),
+            'users': User.objects.all().count(),
+            'queries': History.objects.all().count()
+        }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['statistics'] = Statistics.objects.order_by('-date')
+        return context
 
 
 @login_required(redirect_field_name=None)
@@ -165,8 +164,8 @@ class AdminIndexDetailView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class AdminElasticTasksView(LoginRequiredMixin, TemplateView):
-    template_name = 'user/admin_elastic_tasks.html'
+class AdminClusterTasksView(LoginRequiredMixin, TemplateView):
+    template_name = 'user/admin/cluster_tasks.html'
     extra_context = {
         'title': 'Состояние кластера',
         'subtitle': 'Информация о текущих задачах кластера Elastic',

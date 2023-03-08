@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="header-title">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-heading mb-3">
+                <h2>Обновление статистики</h2>
+                <div class="subtitle">Ниже приведена информация касательно истории авторизации</div>
+            </div>
+               <table id="table-statistics" class="display">
+                    <thead>
+                        <tr>
+                            <th>Дата и время</th>
+                            <th>Записей</th>
+                            <th>Источников</th>
+                            <th>Объём данных</th>
+                            <th>Пользователей</th>
+                            <th>Запросов</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in statistics %}
+                        <tr>
+                            <td data-sort="{{ item.date|date:'dmYHi' }}">{{ item.date }}</td>
+                            <td>{{ item.documents|intcomma}}</td>
+                            <td>{{ item.indexes }}</td>
+                            <td>{{ item.size }}</td>
+                            <td>{{ item.users }}</td>
+                            <td>{{ item.queries }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-heading mb-3">
+                    <h2>Обновление статистики</h2>
+                    <div class="subtitle">Для того, чтобы обновить статистику воспользуйтесь кнопкой ниже</div>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.documents.auto_id }}">{{ form.documents.label_tag }}</label>
+                                {{ form.documents }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.indexes.auto_id }}">{{ form.indexes.label_tag }}</label>
+                                {{ form.indexes }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.size.auto_id }}">{{ form.size.label_tag }}</label>
+                                {{ form.size }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.users.auto_id }}">{{ form.users.label_tag }}</label>
+                                {{ form.users }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ form.queries.auto_id }}">{{ form.queries.label_tag }}</label>
+                                {{ form.queries }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form.errors }}
+                    <button type="submit" class="btn btn-primary">Обновить статистику</button>
+                </form>
+            </div>
+        </div>
+        {% include 'user/menu.html' %}
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+$('#table-statistics').DataTable({
+    order: [],
+    pageLength: 15,
+    bLengthChange: false,
+    searching: false,
+    language: {
+        "url": "/static/js/datatables_lang.json"
+    }
+});
+</script>
+{% endblock %}

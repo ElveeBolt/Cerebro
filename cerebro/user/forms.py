@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
 from .models import Division
+from statistic.models import Statistics
 
 
 class SignUpForm(UserCreationForm):
@@ -120,3 +121,65 @@ class ChangePasswordForm(PasswordChangeForm):
             }
         )
     )
+
+
+class StatisticForm(forms.ModelForm):
+    documents = forms.IntegerField(
+        required=True,
+        label='Всего записей:',
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Всего записей...',
+                'class': 'form-control',
+                'readonly': 'readonly'
+            }
+        )
+    )
+    indexes = forms.IntegerField(
+        required=True,
+        label='Источников:',
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Всего источников...',
+                'class': 'form-control',
+                'readonly': 'readonly'
+            }
+        )
+    )
+    size = forms.CharField(
+        required=True,
+        label='Объём данных:',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Объём данных...',
+                'class': 'form-control',
+                'readonly': 'readonly'
+            }
+        )
+    )
+    users = forms.IntegerField(
+        required=True,
+        label='Пользователей:',
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Всего пользователей...',
+                'class': 'form-control',
+                'readonly': 'readonly'
+            }
+        )
+    )
+    queries = forms.IntegerField(
+        required=True,
+        label='Запросов:',
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Всего запросов...',
+                'class': 'form-control',
+                'readonly': 'readonly'
+            }
+        )
+    )
+
+    class Meta:
+        model = Statistics
+        fields = '__all__'
