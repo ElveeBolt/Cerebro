@@ -16,6 +16,20 @@ def ping_elasticsearch() -> bool:
     return client.ping(request_timeout=0.5)
 
 
+def get_elasticsearch_tasks() -> dict or None:
+    """
+    Get all active tasks from elasticsearch server.
+
+    :return: dict or None of tasks
+    """
+    try:
+        tasks = client.cat.tasks(format='json', detailed=True)
+    except exceptions.ConnectionTimeout:
+        return
+
+    return tasks
+
+
 def check_indexation_tasks() -> bool:
     """
     Get all active tasks from elasticsearch server and check

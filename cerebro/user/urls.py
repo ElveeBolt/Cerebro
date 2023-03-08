@@ -14,4 +14,8 @@ urlpatterns = [
     path('admin-user-registration', views.admin_user_registration, name='admin_user_registration'),
     path('admin-index', views.admin_index, name='admin_index'),
     path('admin-index/<str:index>/mapping', views.admin_index_mapping, name='admin_index_mapping'),
+    path('admin-tasks', views.AdminElasticTasksView.as_view(), name='admin_tasks'),
+
 ]
+
+

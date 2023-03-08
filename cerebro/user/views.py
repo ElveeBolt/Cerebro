@@ -8,6 +8,8 @@ from api import api
 from django.conf import settings
 from .services.Configurator import Configurator
 from .forms import SignUpForm, SignInForm, ChangePasswordForm
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -155,6 +157,19 @@ def admin_index_mapping(request, index):
         'mapping': api.get_index_mapping(index)
     }
     return render(request, 'user/admin_index_mapping.html', context=context)
+
+
+class AdminElasticTasksView(LoginRequiredMixin, TemplateView):
+    template_name = 'user/admin_elastic_tasks.html'
+    extra_context = {
+        'title': 'Состояние кластера',
+        'subtitle': 'Информация о текущих задачах кластера Elastic',
+    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = api.get_elasticsearch_tasks()
+        return context
 
 
 def login(request):
