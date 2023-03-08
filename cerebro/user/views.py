@@ -139,24 +139,30 @@ def admin_configurator(request):
     return render(request, 'user/admin_configurator.html', context=context)
 
 
-@login_required(redirect_field_name=None)
-def admin_index(request):
-    context = {
+class AdminIndexView(LoginRequiredMixin, TemplateView):
+    template_name = 'user/admin/index.html'
+    extra_context = {
         'title': 'Состояние источников',
         'subtitle': 'Просмотр данных об источниках в реальном времени',
-        'indexes': api.get_indexes_info()
     }
-    return render(request, 'user/admin_index.html', context=context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['indexes'] = api.get_indexes_info()
+        return context
 
 
-@login_required(redirect_field_name=None)
-def admin_index_mapping(request, index):
-    context = {
+class AdminIndexDetailView(LoginRequiredMixin, TemplateView):
+    template_name = 'user/admin/index_view.html'
+    extra_context = {
         'title': 'Разметка полей источника',
         'subtitle': 'Детали разметки полей источника данных',
-        'mapping': api.get_index_mapping(index)
     }
-    return render(request, 'user/admin_index_mapping.html', context=context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mapping'] = api.get_index_mapping(self.kwargs['index'])
+        return context
 
 
 class AdminElasticTasksView(LoginRequiredMixin, TemplateView):
