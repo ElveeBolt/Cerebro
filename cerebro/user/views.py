@@ -135,7 +135,7 @@ def admin_configurator(request):
 
         context['download'] = download
 
-    return render(request, 'user/admin_configurator.html', context=context)
+    return render(request, 'user/admin/configurator.html', context=context)
 
 
 class AdminIndexView(LoginRequiredMixin, TemplateView):
