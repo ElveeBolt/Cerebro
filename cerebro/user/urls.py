@@ -12,7 +12,7 @@ urlpatterns = [
 
     path('admin/statistics', views.AdminStatisticsView.as_view(), name='admin_statistics'),
     path('admin/configurator', views.admin_configurator, name='admin_configurator'),
-    path('admin-user-registration', views.admin_user_registration, name='admin_user_registration'),
+    path('admin/signup', views.AdminSignUpView.as_view(), name='admin_signup'),
     path('admin/index', views.AdminIndexView.as_view(), name='admin_index'),
     path('admin/index/<str:index>', views.AdminIndexDetailView.as_view(), name='admin_index_view'),
     path('admin/cluster_tasks', views.AdminClusterTasksView.as_view(), name='admin_cluster_tasks'),

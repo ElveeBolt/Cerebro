@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
@@ -96,27 +96,15 @@ class AdminStatisticsView(LoginRequiredMixin, CreateView):
         return context
 
 
-@login_required(redirect_field_name=None)
-def admin_user_registration(request):
-    context = {
+class AdminSignUpView(LoginRequiredMixin, CreateView):
+    model = Statistics
+    form_class = SignUpForm
+    template_name = 'user/admin/signup.html'
+    success_url = '#'
+    extra_context = {
         'title': 'Регистрация пользователя',
-        'subtitle': 'Создание нового пользователя',
-        'form': SignUpForm(),
-        'form_success': False
+        'subtitle': 'Создание нового пользователя'
     }
-
-    form = SignUpForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            context['form_success'] = True
-            context['form'] = SignUpForm()
-        else:
-            context['form'] = form
-
-    return render(request, 'user/admin_user_registration.html', context=context)
 
 
 @login_required(redirect_field_name=None)
