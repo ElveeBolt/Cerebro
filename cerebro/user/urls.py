@@ -16,7 +16,6 @@ urlpatterns = [
     path('admin/index', views.AdminIndexView.as_view(), name='admin_index'),
     path('admin/index/<str:index>', views.AdminIndexDetailView.as_view(), name='admin_index_view'),
     path('admin/cluster_tasks', views.AdminClusterTasksView.as_view(), name='admin_cluster_tasks'),
-
 ]
 
 

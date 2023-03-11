@@ -21,16 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--ik_0w-0p5wdx09d+h4qwr!$uwysdi-f8gvkwr@1zb@rqq)yy5'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--ik_0w-0p5wdx09d+h4qwr!$uwysdi-f8gvkwr@1zb@rqq)yy5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1').split(' ')
 
+if os.environ.get('CSRF_TRUSTED_ORIGINS'):
+    CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'cerebro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,8 +87,12 @@ WSGI_APPLICATION = 'cerebro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('SQL_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': os.environ.get('SQL_USER', 'user'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
+        'HOST': os.environ.get('SQL_HOST', 'localhost'),
+        'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
 
@@ -132,11 +137,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
+
+STATIC_ROOT = BASE_DIR / 'static/'
 
 # Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -162,12 +169,12 @@ SESSION_COOKIE_AGE = 1800
 
 
 # Elastic settings
-ELASTIC_CERT_FINGERPRINT = "A0:C4:DA:D7:AD:B2:7B:D9:AA:48:AC:91:3E:0E:9E:0F:05:80:2B:EC:75:80:C9:27:43:52:49:04:8D:6E:3A:DB"
+ELASTIC_CERT_FINGERPRINT = os.environ.get('ELASTIC_CERT_FINGERPRINT', 'A0:C4:DA:D7:AD:B2:7B:D9:AA:48:AC:91:3E:0E:9E:0F:05:80:2B:EC:75:80:C9:27:43:52:49:04:8D:6E:3A:DB')
 ELASTIC_USER = {
-    'username': 'elastic',
-    'password': 'O11J4soaIrTTUUQhT9Vp'
+    'username': os.environ.get('ELASTIC_USERNAME', 'elastic'),
+    'password': os.environ.get('ELASTIC_PASSWORD', 'O11J4soaIrTTUUQhT9Vp')
 }
-ELASTIC_SERVER = 'https://10.0.0.2:9200'
+ELASTIC_SERVER = os.environ.get('ELASTIC_SERVER', 'https://10.0.0.2:9200')
 
 
 # Pagination setting
