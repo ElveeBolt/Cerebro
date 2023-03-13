@@ -606,6 +606,35 @@ body.show-sidebar #overlay{
     margin-bottom: 10px
 }
 
+.card-search .subinfo {
+    position: relative;
+    padding-left: 35px;
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1;
+    min-height: 26px;
+    margin-bottom: 15px;
+}
+
+.card-search .subinfo .title{
+    color: #212529;
+    margin-bottom: 2px;
+}
+
+.card-search .subinfo .svg-icon{
+    display: flex;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: var(--body-bg);
+    color: var(--color-muted);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .tags{
     display: flex
 }

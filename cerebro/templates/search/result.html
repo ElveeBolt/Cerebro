@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_tags %}
 
 {% block title %}{{ title }}{% endblock title %}
 
@@ -420,7 +421,7 @@
             <li><span class="left">База данных:</span><span class="right">{{ document.source.database }}</span></li>
             <li><span class="left">Дата обновления:</span><span class="right">{{ document.source.date }}</span></li>
             <li><span class="left">Статус:</span><span class="right">{{ document.source.status }}</span></li>
-            <li><span class="left">Категория:</span><span class="right">{{ document.source.category }}</span></li>
+            <li><span class="left">Категория:</span><span class="right">{{ document.source.category | get_category_name }}</span></li>
         </ul>
     </div>
 </div>
