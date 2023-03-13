@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from api import api
 from user.models import History
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
@@ -10,6 +12,8 @@ from django.dispatch import receiver
 
 from user.models import Login
 from databases.models import Database
+
+
 
 
 
@@ -94,12 +98,12 @@ def result(request, index, id):
     return render(request, 'search/result.html', context=context)
 
 
-@login_required(redirect_field_name=None)
-def about(request):
-    context = {
-        'title': 'О проекте'
+class AboutView(LoginRequiredMixin, TemplateView):
+    template_name = 'search/about.html'
+    extra_context = {
+        'title': 'О проекте',
+        'subtitle': 'Детальная информация о проекте'
     }
-    return render(request, 'search/about.html', context=context)
 
 
 @login_required(redirect_field_name=None)
