@@ -14,9 +14,6 @@ from user.models import Login
 from databases.models import Database
 
 
-
-
-
 @receiver(user_logged_in)
 def my_callback(request, user, **kwargs):
     login = Login(
@@ -30,12 +27,11 @@ def my_callback(request, user, **kwargs):
 
 
 # Create your views here.
-@login_required(redirect_field_name=None)
-def index(request):
-    context = {
+class IndexView(LoginRequiredMixin, TemplateView):
+    template_name = 'search/index.html'
+    extra_context = {
         'title': 'Главная страница'
     }
-    return render(request, 'search/index.html', context=context)
 
 
 @login_required(redirect_field_name=None)
